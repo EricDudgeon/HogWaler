@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Albert Winemiller</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style.css" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="favL.png">
+</head>
+  <body>
+      <!--Used for reloading new changes during development-->
+      <script src="/reload/reload.js"></script>
+      <!--<div class="header"><h2><%- Insertion_1 %></h2></div>-->
+        <div class="row">
+          <div class="lefttitle">
+            <button class="button-hide-links" onclick="hideLeftColumn()" style="vertical-align:middle"><span>|</span>
+              <!-- <button class="button-hide-links" style="vertical-align:middle"><span></span> -->
+          </div>
+          <div class="righttitle">
+            <div class="header"><h2><%- Insertion_1 %></h2></div>
+          </div>
+          
+        </div>
+        <div class="row">
+          
+          <div class="leftcolumn">
+            <div class="card">
+              <nav>
+                <ul>
+                  <li><a href="/">About Me</a></li>
+                </ul>
+              </nav>
+              
+            </div>
+            <div class="card">
+              <h2>Projects</h2>
+              <nav>
+                <ul>
+                  <li><a href="/lorica-simulation">Simulation Optimization</a></li>
+                  <li><a href="https://thelazystop.com">K-State Senior Project</a></li>
+                  <li><a href="https://thecopelandwedding.com">Wedding Website</a></li>
+                </ul>
+              </nav>
+              
+            </div>
+            <!--
+            <div class="card">
+              <h2>Tutorials</h2>
+              <h5><a href="/parallel-code">Parallel Code</a></h5>
+              <h5><a href="/devops">Devops</a></h5>
+            </div>
+              -->
+          </div>
+          <div class="rightcolumn">
+            <%- Insertion_2 %>
+            
+          </div>
+        </div>
+        <!--Use https://www.w3schools.com/howto/howto_js_topnav_responsive.asp-->
+    <main>
+      <%- Insertion_3 %>
+      <%- Insertion_4 %>
+      <%- Insertion_5 %>
+      <%- Insertion_6 %>
+      <%- Insertion_7 %>
+      <%- Insertion_8 %>
+      <%- Insertion_9 %>
+      <%- Insertion_10 %>
+    </main>
+
+    <div class="footer">
+        Copyright &copy; 2022 Albert Winemiller<br>
+        <a href="mailto:awinemiller4@gmail.com">awinemiller4@gmail.com</a>
+      
+    </div>
+    
+    <script>
+      
+      function hideLeftColumn() {
+        let elem = document.getElementById('test');
+        //let ht = window.getComputedStyle(elem, null).getPropertyValue("height");
+        //console.log(ht)
+        let left = document.getElementsByClassName("leftcolumn")[0];
+        let right = document.getElementsByClassName("rightcolumn")[0];
+        let leftstyle = window.getComputedStyle(left, null).getPropertyValue("width");
+        
+        let rightstyle = window.getComputedStyle(right, null).getPropertyValue("width");
+        //console.log(leftstyle);
+        //console.log(rightstyle);
+        //console.log(left.style.width);
+        //console.log(right.style.width);
+        //console.log(left.style.width.getComputedStyle());
+        
+        if (left.style.width == "0%") {
+          left.style.display = ""
+          left.style.width = "";
+          right.style.width = "";
+          right.style.padding = "";
+        } else {
+          left.style.display = "none"
+          left.style.width = "0%";
+          right.style.width = "100%";
+          right.style.padding = "0";
+        }
+        
+        /*
+        if (left.style.width == "0%") {
+          left.style.width = "25%";
+          right.style.width = "75%";
+        } else {
+          left.style.width = "0%";
+          right.style.width = "100%";
+        }
+        */
+       
+      }
+      
+      </script>
+        
+  </body>
+      
+  
+
+</html>

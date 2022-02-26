@@ -1,0 +1,186 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Add a gray background color with some padding */
+  body {
+    font-family: Arial;
+    padding: 20px;
+    background: #f1f1f1;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+
+  /*Navigation */
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    width: auto;
+    background-color: rgba(126, 21, 196, 0.233);
+    border: 1px solid #555;
+  }
+  nav li {
+    text-align: center;
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+  }
+  nav li a {
+    display: block;
+    color: #000;
+    font-size: 20px;
+    padding: 20px;
+    text-decoration: none;
+  }
+  nav li a:hover { /* Change the link color on hover */
+    background-color: #555;
+    color: white;
+  }
+
+
+  /* Header/Blog Title */
+  .header {
+    padding: 10px;
+    /*font-size: 30px;*/
+    text-align: center;
+    background: white;
+    white-space:nowrap;
+    margin-left: 20px;
+  }
+  
+  .lefttitle {   
+    float: left;
+    text-align:center;
+    width: 10%;
+  }
+  .righttitle {
+    float: left;
+    width: 90%;
+  }
+  .left-image {   
+    float: left;
+    text-align:center;
+    width: 50%;
+  }
+  .right-text {
+    float: left;
+    width: 50%;
+  }
+  /* Create two unequal columns that floats next to each other */
+  /* Left column */
+  .leftcolumn {   
+    float: left;
+    width: 25%;
+    text-align:center;
+  }
+  
+  /* Right column */
+  .rightcolumn {
+    float: left;
+    width: 75%;
+    padding-left: 20px;
+  }
+  
+  /* image sizing */
+  .img-sizing {
+    /*background-color: rgba(126, 21, 196, 0.233);*/
+    width: 100%;
+    /*padding: 10px;*/
+  }
+  .img-sizing-left {
+    /*background-color: rgba(126, 21, 196, 0.233);*/
+    width: 90%;
+    /*padding: 10px;*/
+  }
+  
+  /* Add a card effect for articles */
+  .card {
+     background-color: white;
+     padding: 20px;
+     margin-top: 20px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+
+  .button-hide-links {
+    float: left;
+    display: block;
+    z-index:99;
+    /*display: inline-block;*/
+    border-radius: 4px;
+    background-color: rgba(126, 21, 196, 0.233);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 28px;
+    /*width: 5%;*/
+    transition: all 0.5s;
+    cursor: pointer;
+    /*margin: 2px;*/
+  }
+  
+  .button-hide-links span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button-hide-links span:after {
+    content: '\00ab';
+    /*position: absolute;*/
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button-hide-links:hover span { /*makes button move slight when hovered over */
+    padding-right: 5px;
+  }
+  
+  .button-hide-links:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 800px) { /*Mobile layout*/
+    .leftcolumn, .rightcolumn {   
+      width: 100%;
+      padding: 0;
+    }
+    .header {
+      white-space:normal; /*prevents long titles from taking up too much space on mobile*/
+    }
+    .left-image, .right-text {   
+      float: left;
+      text-align:center;
+      width: 100%;
+    }
+    .lefttitle {   
+      float: left;
+      text-align:center;
+      width: 20%;
+    }
+    .righttitle {
+      float: left;
+      width: 80%;
+    }
+  }
