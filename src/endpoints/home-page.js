@@ -13,7 +13,7 @@ const serveError = require('../serve-error');
 async function homePage(req, res) {
   
   
-  var ins_1 = "Albert Winemiller";
+  var ins_1 = "Morning Hog Wallow";
   var ins_2 = templates["home-page.html"]({});
   var ins_3;
   var ins_4;
