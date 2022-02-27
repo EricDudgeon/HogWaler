@@ -40,24 +40,24 @@ except:
     print("Unable to connect to the database")
     
 cursor = conn.cursor()
-## Iterate through rows and commit to table
-# try:
-for index, prices in primal_prices.iterrows():
-    date = prices[0]
-    carcass = prices[1]
-    loin = prices[2]
-    butt = prices[3]
-    picnic = prices[4]
-    rib = prices[5]
-    ham = prices[6]
-    belly = prices[7]
-    pounds = prices[8]
-    sql_insert_primal = "INSERT INTO market.weekly_cut_actual (price_date, avg_cutout_carcass , avg_cutout_loin , avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds) VALUES ('"+date+"', '"+carcass+"', '"+loin+"', '"+butt+"', '"+picnic+"', '"+rib+"', '"+ham+"', '"+belly+"','"+pounds+"');"
-    cursor.execute(sql_insert_primal)
-    conn.commit()
-# except:
-#     print("SQL Insert Failed!")
+# Iterate through rows and commit to table
+try:
+    for index, prices in primal_prices.iterrows():
+        date = prices[0]
+        carcass = prices[1]
+        loin = prices[2]
+        butt = prices[3]
+        picnic = prices[4]
+        rib = prices[5]
+        ham = prices[6]
+        belly = prices[7]
+        pounds = prices[8]
+        sql_insert_primal = "INSERT INTO market.weekly_cut_actual (price_date, avg_cutout_carcass , avg_cutout_loin , avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds) VALUES ('"+date+"', '"+carcass+"', '"+loin+"', '"+butt+"', '"+picnic+"', '"+rib+"', '"+ham+"', '"+belly+"','"+pounds+"');"
+        cursor.execute(sql_insert_primal)
+        conn.commit()
+except:
+    print("SQL Insert Failed!")
     
-# finally:
-cursor.close()
-conn.close()
+finally:
+    cursor.close()
+    conn.close()
