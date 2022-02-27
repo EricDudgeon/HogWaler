@@ -15,7 +15,6 @@ async function insertSomeFakeData() {
     //var month = Math.floor(Math.random() * 100) + 1; //get random month between 1-12 (to change the month of created_on)
     //var newDate = '2022-2-'+ day;
     for(let day = 1; day < 10; day++) {
-        
         var carcass = Math.floor(Math.random() * 1000) + 1;
         var loin = Math.floor(Math.random() * 1000) + 1;
         var butt = Math.floor(Math.random() * 1000) + 1;
