@@ -26,7 +26,7 @@ const credentials_local = {
 //connects to other remote database server potentially (if setup)
 const credentials_server = {
   host: '192.168.86.42',
-  user: 'pi',
+  user: linuxUser.username,
   password: 'DatabasePassword6969', //need in a secret file !!! (not secure here)
   database: 'hogwaler',
   port: '5432'
