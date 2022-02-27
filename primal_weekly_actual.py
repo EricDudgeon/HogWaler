@@ -29,7 +29,13 @@ primal_prices["pounds"] = volume["pounds"]
 
 ## Try to connect
 try:
-    conn=psycopg2.connect("host='192.168.86.42'dbname='hogwaler' user='bersky' password='DatabasePassword6969' port=5432")
+    conn = psycopg2.connect(
+    database="hogwaler",
+    user='bertsky',
+    password='DatabasePassword6969',
+    host='192.168.86.42',
+    port='5432'
+)
 except:
     print("Unable to connect to the database")
     
