@@ -5,7 +5,7 @@ const postdb = require('../src/postgres-connection');
 async function recreateData() {
     console.log("starting");
     await postdb.recreateDatabase(); console.log("recreate DONE");
-    await insertSomeFakeData(); console.log("recreate DONE");
+    //await insertSomeFakeData(); console.log("recreate DONE");
 }
 
 recreateData();
