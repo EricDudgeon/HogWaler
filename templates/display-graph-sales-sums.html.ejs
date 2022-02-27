@@ -15,7 +15,8 @@
         },
         axisY: {
             title: "Cut Price",
-            suffix: ""
+            suffix: "",
+            valueFormatString: "###0.00"
         },
         legend:{
             cursor: "pointer",
@@ -28,14 +29,14 @@
         data: [{
             name: "Predicted",
             type: "spline",
-            yValueFormatString: "#0.##",
+            yValueFormatString: "#0.00",
             showInLegend: true,
             dataPoints: weeklyPredicted
         },
         {
             name: "Actual",
             type: "spline",
-            yValueFormatString: "#0.##",
+            yValueFormatString: "#0.00",
             showInLegend: true,
             dataPoints: weeklyActual
         }]

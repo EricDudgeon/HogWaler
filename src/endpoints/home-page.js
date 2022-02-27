@@ -22,18 +22,23 @@ async function homePage(req, res) {
   var ins_9;
   var ins_10;
 
-  var weeklyPredictedQuery = await postdb.getAllWeeklyPredictedCutPrices();
-  var weeklyActualQuery = await postdb.getAllWeeklyActualCutPrices();
+  var weeklyPredictedQuery = await postdb.getGraphWeeklyPredictedCutPricesCarcass();
+  var weeklyActualQuery = await postdb.getGraphWeeklyActualCutPricesCarcass();
   if(weeklyPredictedQuery == undefined) return serveError(req, res, 500, "could not grab from database'");
   if(weeklyActualQuery == undefined) return serveError(req, res, 500, "could not grab from database'");
-  
+  //console.log(weeklyPredictedQuery);
+  //console.log(weeklyActualQuery);
   weeklyPredictedQuery.forEach((elem) => {
-    elem.avg_cutout_carcass = Number(elem.avg_cutout_carcass);
+    elem.x = Number(elem.x - elem.current_week);
+    elem.y = elem.y / 100;
   });
   weeklyActualQuery.forEach((elem) => {
-    elem.avg_cutout_carcass = Number(elem.avg_cutout_carcass);
+    elem.x = Number(elem.x - elem.current_week);
+    elem.y = elem.y / 100;
   });
 
+  console.log(weeklyPredictedQuery);
+  console.log(weeklyActualQuery);
 
 
   ins_4 = templates["display-graph-sales-sums.html"]({

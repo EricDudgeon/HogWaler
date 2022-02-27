@@ -143,6 +143,37 @@ async function getAllDailyActualCutPrices() {
   return results;
 }
 
+async function getGraphWeeklyPredictedCutPricesCarcass() {
+  const text = `
+  SELECT EXTRACT(WEEK FROM price_date) as x, avg_cutout_carcass as y, EXTRACT(WEEK FROM CURRENT_DATE) as current_week
+  FROM market.weekly_cut_predicted
+  WHERE price_date BETWEEN (CURRENT_DATE - interval '5 weeks') AND (CURRENT_DATE + interval '5 weeks')
+  GROUP BY x, y
+  ORDER BY x
+  ` ;
+  const values = []; const results = await getMultiQuery(text, values);
+  return results;
+}
+async function getGraphWeeklyActualCutPricesCarcass() {
+  const text = `
+  SELECT EXTRACT(WEEK FROM price_date) as x, avg_cutout_carcass as y, EXTRACT(WEEK FROM CURRENT_DATE) as current_week
+  FROM market.weekly_cut_actual
+  WHERE price_date BETWEEN (CURRENT_DATE - interval '5 weeks') AND (CURRENT_DATE + interval '5 weeks')
+  GROUP BY x, y
+  ORDER BY x
+  ` ;
+  const values = []; const results = await getMultiQuery(text, values);
+  return results;
+}
+/*
+const text = `
+  SELECT EXTRACT(MONTH FROM created_on) as x, SUM(purchase_quantity) as y
+  FROM store.product_purchase
+  WHERE extract(year from created_on) = $1
+  GROUP BY x
+  ` ;
+  */
+
 //INSERT
 async function insertWeeklyCutPredicted(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date) {
   const text = `
@@ -192,6 +223,8 @@ module.exports = { //INSERT Statements
   getAllWeeklyActualCutPrices,
   getAllDailyPredictedCutPrices,
   getAllDailyActualCutPrices,
+  getGraphWeeklyPredictedCutPricesCarcass,
+  getGraphWeeklyActualCutPricesCarcass,
   //INSERT
   insertWeeklyCutPredicted,
   insertWeeklyCutActual,
