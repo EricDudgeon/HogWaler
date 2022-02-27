@@ -144,43 +144,43 @@ async function getAllDailyActualCutPrices() {
 }
 
 //INSERT
-async function insertWeeklyCutPredicted(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds) {
+async function insertWeeklyCutPredicted(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date) {
   const text = `
-    INSERT INTO market.weekly_cut_predicted (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    INSERT INTO market.weekly_cut_predicted (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING weekly_cut_predicted_id
   `;
-  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds];
+  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date];
   const results = await getSingleQuery(text, values);
   return results;
 }
-async function insertWeeklyCutActual(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds) {
+async function insertWeeklyCutActual(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date) {
   const text = `
-    INSERT INTO market.weekly_cut_actual (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    INSERT INTO market.weekly_cut_actual (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING weekly_cut_actual_id
   `;
-  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds];
+  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date];
   const results = await getSingleQuery(text, values);
   return results;
 }
-async function insertDailyCutPredicted(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds) {
+async function insertDailyCutPredicted(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date) {
   const text = `
-    INSERT INTO market.daily_cut_predicted (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    INSERT INTO market.daily_cut_predicted (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING daily_cut_predicted_id
   `;
-  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds];
+  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date];
   const results = await getSingleQuery(text, values);
   return results;
 }
-async function insertDailyCutActual(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds) {
+async function insertDailyCutActual(avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date) {
   const text = `
-    INSERT INTO market.daily_cut_actual (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    INSERT INTO market.daily_cut_actual (avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING daily_cut_actual_id
   `;
-  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds];
+  const values = [avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date];
   const results = await getSingleQuery(text, values);
   return results;
 }

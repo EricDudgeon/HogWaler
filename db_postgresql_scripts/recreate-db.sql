@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS market.daily_cut_predicted (
     avg_cutout_ham INT NOT NULL,
     avg_cutout_belly INT NOT NULL,
     pounds INT NOT NULL,
+    price_date DATE NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -36,6 +37,7 @@ CREATE TABLE IF NOT EXISTS market.daily_cut_actual (
     avg_cutout_ham INT NOT NULL,
     avg_cutout_belly INT NOT NULL,
     pounds INT NOT NULL,
+    price_date DATE NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -49,6 +51,7 @@ CREATE TABLE IF NOT EXISTS market.weekly_cut_predicted (
     avg_cutout_ham INT NOT NULL,
     avg_cutout_belly INT NOT NULL,
     pounds INT NOT NULL,
+    price_date DATE NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -62,5 +65,6 @@ CREATE TABLE IF NOT EXISTS market.weekly_cut_actual (
     avg_cutout_ham INT NOT NULL,
     avg_cutout_belly INT NOT NULL,
     pounds INT NOT NULL,
+    price_date DATE NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

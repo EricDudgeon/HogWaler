@@ -9,29 +9,22 @@ async function recreateData() {
 }
 
 recreateData();
-
+//avg_cutout_carcass, avg_cutout_loin, avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date
 async function insertSomeFakeData() {  
-    const saltRounds = 10;
-    var plaintextPassword = "admin123";
-    //var hash = await bcrypt.hashSync(plaintextPassword, saltRounds);
-    const hash = await bcrypt.hash(plaintextPassword, saltRounds); //built in await
-    //UserData
-    var firstN = ["Dave","John","Greg"];
-    var lastN = ["Miller","Doe","Shaw"];
-    var email = ["dave@ksu.edu","jd@ksu.edu","gs@ksu.edu"];
-    var is_admin = [1,0,0];
-    for(let i = 0; i < firstN.length; i++) {
-        var userResult = await postdb.insertNewUser(firstN[i], lastN[i], email[i], hash, is_admin[i]); //returns .user_data_id
-        //console.log(userResult);
-        await postdb.insertNewTestingAB(userResult.user_data_id, "site-A.css");
-    }
     
     //var month = Math.floor(Math.random() * 100) + 1; //get random month between 1-12 (to change the month of created_on)
     //var newDate = '2022-2-'+ day;
     for(let day = 1; day < 10; day++) {
+        
+        var carcass = Math.floor(Math.random() * 1000) + 1;
+        var loin = Math.floor(Math.random() * 1000) + 1;
+        var butt = Math.floor(Math.random() * 1000) + 1;
+        var picnic = Math.floor(Math.random() * 1000) + 1;
+        var rib = Math.floor(Math.random() * 1000) + 1;
+        var ham = Math.floor(Math.random() * 1000) + 1;
+        var belly = Math.floor(Math.random() * 1000) + 1;
+        var pounds = Math.floor(Math.random() * 1000) + 1;
         var newDate = '2022-2-'+ day;
-        var carcass = Math.floor(Math.random() * 1000) + 1;
-        var carcass = Math.floor(Math.random() * 1000) + 1;
-        await postdb.insertDailyCutActual()
+        await postdb.insertDailyCutActual(carcass,loin,butt,picnic,rib,ham,belly,pounds,newDate);
     }
 }

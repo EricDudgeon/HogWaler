@@ -1,8 +1,6 @@
 const templates = require('../templates');
-
+const postdb = require('../postgres-connection');
 const serveError = require('../serve-error');
-
-//const postdb = require('../postgres-connection');
 
 //sets up the homepage template
 /** @function homePage 
@@ -15,7 +13,7 @@ async function homePage(req, res) {
   
   var ins_1 = "Morning Hog Wallow";
   var ins_2 = templates["home-page.html"]({});
-  var ins_3;
+  var ins_3 = templates["display-graph-setup.html"]({});
   var ins_4;
   var ins_5;
   var ins_6;
@@ -23,8 +21,27 @@ async function homePage(req, res) {
   var ins_8;
   var ins_9;
   var ins_10;
+
+  var weeklyPredictedQuery = await postdb.getAllWeeklyPredictedCutPrices();
+  var weeklyActualQuery = await postdb.getAllWeeklyActualCutPrices();
+  if(weeklyPredictedQuery == undefined) return serveError(req, res, 500, "could not grab from database'");
+  if(weeklyActualQuery == undefined) return serveError(req, res, 500, "could not grab from database'");
   
-  
+  weeklyPredictedQuery.forEach((elem) => {
+    elem.avg_cutout_carcass = Number(elem.avg_cutout_carcass);
+  });
+  weeklyActualQuery.forEach((elem) => {
+    elem.avg_cutout_carcass = Number(elem.avg_cutout_carcass);
+  });
+
+
+
+  ins_4 = templates["display-graph-sales-sums.html"]({
+    graph_title : "Weekly Cut Price Prediction " + 2022,
+    weekly_predicted : weeklyPredictedQuery,
+    weekly_actual : weeklyActualQuery,
+  });
+
 
   
   //Main Template :

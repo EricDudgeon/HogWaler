@@ -1,0 +1,53 @@
+<script>
+    var weeklyPredicted = <%- JSON.stringify(weekly_predicted) %>;
+    var weeklyActual = <%- JSON.stringify(weekly_actual) %>;
+    
+    var chart1 = new CanvasJS.Chart("chartContainer1", {
+        animationEnabled: true,
+        title:{
+            text: "<%= graph_title %>"
+        },
+        axisX: {
+            title: "Week",
+            //valueFormatString: "DD MMM,YY"
+            //valueFormatString: "M"
+            interval : 1
+        },
+        axisY: {
+            title: "Cut Price",
+            suffix: ""
+        },
+        legend:{
+            cursor: "pointer",
+            fontSize: 16,
+            itemclick: toggleDataSeries1
+        },
+        toolTip:{
+            shared: true
+        },
+        data: [{
+            name: "Predicted",
+            type: "spline",
+            yValueFormatString: "#0.##",
+            showInLegend: true,
+            dataPoints: weeklyPredicted
+        },
+        {
+            name: "Actual",
+            type: "spline",
+            yValueFormatString: "#0.##",
+            showInLegend: true,
+            dataPoints: weeklyActual
+        }]
+    });
+    chart1.render();
+    function toggleDataSeries1(e){
+        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+        }
+        else{
+            e.dataSeries.visible = true;
+        }
+        chart1.render();
+    }
+</script>
