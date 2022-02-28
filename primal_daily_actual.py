@@ -15,11 +15,11 @@ def call_weekly(ID, Section):
 
 ## Get weekly pricing
 primal_prices = call_weekly("2498", "Cutout and Primal Values")
-primal_prices = primal_prices.iloc[:365,[0,2,3,4,5,6,7,8]]
+primal_prices = primal_prices.iloc[:1,[0,2,3,4,5,6,7,8]]
 
 ## Get weekly volume
 volume = call_weekly("2498", "Current Volume")
-volume = volume.iloc[:365,[0,2]]
+volume = volume.iloc[:1,[0,2]]
 volume["pounds"] = volume.temp_cuts_total_load.str.replace(",","")
 
 ## Append pounds to primal prices and remove comma
