@@ -26,14 +26,14 @@ volume["pounds"] = volume.total_loads.str.replace(",","")
 primal_prices["pounds"] = volume["pounds"]
 
 ### Replace periods
-primal_prices["avg_cutout_carcass"] = primal_prices["avg_cutout_carcass"].str.replace('.','')
-primal_prices["avg_cutout_loin"] = primal_prices["avg_cutout_loin"].str.replace('.','')
-primal_prices["avg_cutout_butt"] = primal_prices["avg_cutout_butt"].str.replace('.','')
-primal_prices["avg_cutout_picnic"] = primal_prices["avg_cutout_picnic"].str.replace('.','')
-primal_prices["avg_cutout_rib"] = primal_prices["avg_cutout_rib"].str.replace('.','')
-primal_prices["avg_cutout_ham"] = primal_prices["avg_cutout_ham"].str.replace('.','')
-primal_prices["avg_cutout_belly"] = primal_prices["avg_cutout_belly"].str.replace('.','')
-primal_prices["pounds"] = primal_prices["pounds"].str.replace('.','')
+primal_prices["avg_cutout_carcass"] = primal_prices["avg_cutout_carcass"].str.replace('.','',regex=True)
+primal_prices["avg_cutout_loin"] = primal_prices["avg_cutout_loin"].str.replace('.','',regex=True)
+primal_prices["avg_cutout_butt"] = primal_prices["avg_cutout_butt"].str.replace('.','',regex=True)
+primal_prices["avg_cutout_picnic"] = primal_prices["avg_cutout_picnic"].str.replace('.','',regex=True)
+primal_prices["avg_cutout_rib"] = primal_prices["avg_cutout_rib"].str.replace('.','',regex=True)
+primal_prices["avg_cutout_ham"] = primal_prices["avg_cutout_ham"].str.replace('.','',regex=True)
+primal_prices["avg_cutout_belly"] = primal_prices["avg_cutout_belly"].str.replace('.','',regex=True)
+primal_prices["pounds"] = primal_prices["pounds"].str.replace('.','',regex=True)
 
 ### Push to Database
 
