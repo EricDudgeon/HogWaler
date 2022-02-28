@@ -143,7 +143,8 @@ async function getAllDailyActualCutPrices() {
   return results;
 }
 
-async function getGraphWeeklyPredictedCutPricesCarcass() {
+//SELECT individual cuts for Graphing
+async function getGraphWeeklyPredictedCutPricesCarcass() { //Carcass Predicted
   const text = `
   SELECT EXTRACT(WEEK FROM price_date) as x, avg_cutout_carcass as y, EXTRACT(WEEK FROM CURRENT_DATE) as current_week
   FROM market.weekly_cut_predicted
@@ -154,9 +155,31 @@ async function getGraphWeeklyPredictedCutPricesCarcass() {
   const values = []; const results = await getMultiQuery(text, values);
   return results;
 }
-async function getGraphWeeklyActualCutPricesCarcass() {
+async function getGraphWeeklyActualCutPricesCarcass() {  //Carcass Actual
   const text = `
   SELECT EXTRACT(WEEK FROM price_date) as x, avg_cutout_carcass as y, EXTRACT(WEEK FROM CURRENT_DATE) as current_week
+  FROM market.weekly_cut_actual
+  WHERE price_date BETWEEN (CURRENT_DATE - interval '5 weeks') AND (CURRENT_DATE + interval '5 weeks')
+  GROUP BY x, y
+  ORDER BY x
+  ` ;
+  const values = []; const results = await getMultiQuery(text, values);
+  return results;
+}
+async function getGraphWeeklyPredictedCutPricesLoin() { //Loin Predicted
+  const text = `
+  SELECT EXTRACT(WEEK FROM price_date) as x, avg_cutout_loin as y, EXTRACT(WEEK FROM CURRENT_DATE) as current_week
+  FROM market.weekly_cut_predicted
+  WHERE price_date BETWEEN (CURRENT_DATE - interval '5 weeks') AND (CURRENT_DATE + interval '5 weeks')
+  GROUP BY x, y
+  ORDER BY x
+  ` ;
+  const values = []; const results = await getMultiQuery(text, values);
+  return results;
+}
+async function getGraphWeeklyActualCutPricesLoin() { //Loin Actual
+  const text = `
+  SELECT EXTRACT(WEEK FROM price_date) as x, avg_cutout_loin as y, EXTRACT(WEEK FROM CURRENT_DATE) as current_week
   FROM market.weekly_cut_actual
   WHERE price_date BETWEEN (CURRENT_DATE - interval '5 weeks') AND (CURRENT_DATE + interval '5 weeks')
   GROUP BY x, y
@@ -223,8 +246,10 @@ module.exports = { //INSERT Statements
   getAllWeeklyActualCutPrices,
   getAllDailyPredictedCutPrices,
   getAllDailyActualCutPrices,
-  getGraphWeeklyPredictedCutPricesCarcass,
+  getGraphWeeklyPredictedCutPricesCarcass, //Carcass
   getGraphWeeklyActualCutPricesCarcass,
+  getGraphWeeklyPredictedCutPricesLoin, //Loin
+  getGraphWeeklyActualCutPricesLoin,
   //INSERT
   insertWeeklyCutPredicted,
   insertWeeklyCutActual,
