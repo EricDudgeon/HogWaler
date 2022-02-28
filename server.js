@@ -3,7 +3,7 @@ const http = require('http');
 const app = require('./src/app');
 //require('./src/database');
 require('./src/templates');
-const port = 8084;
+const port = 8085;
 const reload = require('reload');
 //test4
 app.listen(port, function(){

@@ -50,7 +50,7 @@ async function homePage(req, res) {
   });
 
 
-  
+
   
   var weeklyPredictedQueryLoin = await postdb.getGraphWeeklyPredictedCutPricesLoin();
   var weeklyActualQueryLoin = await postdb.getGraphWeeklyActualCutPricesLoin();
@@ -64,8 +64,8 @@ async function homePage(req, res) {
     elem.x = Number(elem.x - elem.current_week);
     elem.y = elem.y / 100;
   });
-  //console.log(weeklyPredictedQuery);
-  //console.log(weeklyActualQuery);
+  console.log(weeklyPredictedQueryLoin);
+  console.log(weeklyActualQueryLoin);
   ins_5 = templates["display-graph-weekly-loin.html"]({
     graph_title : "Weekly Loin Cut Price Prediction " + 2022,
     weekly_predicted : weeklyPredictedQueryLoin,
