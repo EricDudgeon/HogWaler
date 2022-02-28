@@ -42,7 +42,7 @@ async function homePage(req, res) {
 
 
   ins_4 = templates["display-graph-sales-sums.html"]({
-    graph_title : "Weekly Cut Price Prediction " + 2022,
+    graph_title : "Weekly Carcass Cut Price Prediction " + 2022,
     weekly_predicted : weeklyPredictedQuery,
     weekly_actual : weeklyActualQuery,
   });
