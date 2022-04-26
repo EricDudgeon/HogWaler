@@ -27,8 +27,8 @@ volume = volume.iloc[:,[1,3]]
 volume.set_index("report_for_date", inplace=True)
 volume = volume.iloc[:121]
 volume.iloc[::-1]
-df_new["Pounds"] = volume["total_loads"]
-df_new['Pounds'] = df_new.Pounds.str.replace(",","")
+df_new["pounds"] = volume["total_loads"]
+df_new['pounds'] = df_new.Pounds.str.replace(",","")
 df_new1 = df_new.astype(float)
 last = df_new1.iloc[-1]
 df_new = df_new1.pct_change().iloc[-120:]
@@ -37,7 +37,7 @@ df_new = df_new1.pct_change().iloc[-120:]
 predict_df = np.array(df_new)
 prediction_df = predict_df.reshape(1, 120, 8)
 final = lstm_model.predict(prediction_df)
-post_final = pd.DataFrame(final[0],columns=['avg_cutout_carcass',	'avg_cutout_loin',	'avg_cutout_butt',	'avg_cutout_picnic','avg_cutout_rib',	'avg_cutout_ham',	'avg_cutout_belly',"Pounds"])
+post_final = pd.DataFrame(final[0],columns=['avg_cutout_carcass',	'avg_cutout_loin',	'avg_cutout_butt',	'avg_cutout_picnic','avg_cutout_rib',	'avg_cutout_ham',	'avg_cutout_belly',"pounds"])
 
 ### Convert to CWT 
 def convert(array, last):
@@ -55,7 +55,7 @@ def convert(array, last):
     return final_lst
 
 predictions = np.array(convert(final[0],last))
-final_predictions = pd.DataFrame(predictions,columns=['avg_cutout_carcass','avg_cutout_loin','avg_cutout_butt','avg_cutout_picnic','avg_cutout_rib','avg_cutout_ham','avg_cutout_belly','Pounds'])
+final_predictions = pd.DataFrame(predictions,columns=['avg_cutout_carcass','avg_cutout_loin','avg_cutout_butt','avg_cutout_picnic','avg_cutout_rib','avg_cutout_ham','avg_cutout_belly','pounds'])
 df_new1 = df_new1.append(final_predictions)
 df_new1.reset_index(inplace=True)
 final_predictions = round(final_predictions,2)
@@ -66,7 +66,7 @@ df_date = [str(last_date + timedelta(days=7)), str(last_date + timedelta(days=14
 week_predition = ["1","2","3","4","5","6"]
 final_predictions["date"] = df_date
 final_predictions["week_prediction"] = week_predition
-
+final_predictions = final_predictions.astype(str)
 ### Replace periods
 final_predictions["avg_cutout_carcass"] = final_predictions["avg_cutout_carcass"].str.replace('.','',regex=True)
 final_predictions["avg_cutout_loin"] = final_predictions["avg_cutout_loin"].str.replace('.','',regex=True)
