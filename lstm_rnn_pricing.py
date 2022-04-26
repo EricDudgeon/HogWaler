@@ -103,7 +103,7 @@ try:
         pounds = prices[7]
         date_pred = prices[8]
         week_pred = prices[9]
-        sql_insert_primal = "INSERT INTO market.weekly_primal_predictions (avg_cutout_carcass , avg_cutout_loin , avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date, week_pred) VALUES ('"+carcass+"', '"+loin+"', '"+butt+"', '"+picnic+"', '"+rib+"', '"+ham+"', '"+belly+"','"+pounds+"','"+date_pred+"','"+week_pred+"');"
+        sql_insert_primal = "INSERT INTO market.weekly_cut_predicted (avg_cutout_carcass , avg_cutout_loin , avg_cutout_butt, avg_cutout_picnic, avg_cutout_rib, avg_cutout_ham, avg_cutout_belly, pounds, price_date, week_pred) VALUES ('"+carcass+"', '"+loin+"', '"+butt+"', '"+picnic+"', '"+rib+"', '"+ham+"', '"+belly+"','"+pounds+"','"+date_pred+"','"+week_pred+"');"
         cursor.execute(sql_insert_primal)
         conn.commit()
 except:
