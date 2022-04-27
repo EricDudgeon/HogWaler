@@ -28,7 +28,7 @@ volume.set_index("report_for_date", inplace=True)
 volume = volume.iloc[:121]
 volume.iloc[::-1]
 df_new["pounds"] = volume["total_loads"]
-df_new['pounds'] = df_new.Pounds.str.replace(",","")
+df_new['pounds'] = df_new.pounds.str.replace(",","")
 df_new1 = df_new.astype(float)
 last = df_new1.iloc[-1]
 df_new = df_new1.pct_change().iloc[-120:]
